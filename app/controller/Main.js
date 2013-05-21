@@ -13,6 +13,9 @@ Ext.define('Todo.controller.Main', {
             'Login',
             'Main'
         ],
+        refs   : {
+            tabs    : 'main'
+        },
         control: {
             'login' : {
                 submit : 'doLogin'
@@ -41,8 +44,12 @@ Ext.define('Todo.controller.Main', {
         });
     },
 
-    loadTasks        : function(){
+    loadTasks        : function(data){
+        var tabs = this.getTabs(),
+            login = tabs.down('login');
 
+        tabs.remove(login,true);
+        tabs.getTabBar().show();
     },
 
     showErrorMessage : function(data){

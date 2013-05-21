@@ -18,6 +18,8 @@ Ext.define('Todo.view.Main', {
             scrollable : null
         },{
             xtype : 'tasks'
+        },{
+            xtype : 'about'
         }]
     }
 });
