@@ -9,7 +9,8 @@ Ext.define('Todo.view.Tasks', {
     extend: 'Ext.Container',
     xtype : 'tasks',
     requires: [
-        'Todo.model.Task'
+        'Todo.store.Tasks',
+        'Ext.dataview.DataView'
     ],
 
     config : {
@@ -24,8 +25,12 @@ Ext.define('Todo.view.Tasks', {
             xtype: 'titlebar',
             title: 'My Todo List'
         },{
-            xtype : 'container',
-            flex  : 1
+            xtype   : 'dataview',
+            flex    : 1,
+            cls     : 'tasks-view',
+            padding : '20 0',
+            store   : {type:'tasks'},
+            itemTpl : '<div class="item-remove"></div> {name}'
         },{
             xtype   : 'container',
             layout  : 'hbox',
@@ -38,7 +43,16 @@ Ext.define('Todo.view.Tasks', {
                 xtype : 'button',
                 text  : 'Add item',
                 width : 100,
-                margin: '10 5'
+                margin: '10 5',
+                handler : function(btn){
+                    var view = this.up('tasks'),
+                        textfield = view.down('textfield');
+
+                    if(textfield.getValue() !== ''){
+                        view.fireEvent('addtask',{name:textfield.getValue(),complete:false});
+                        textfield.reset();
+                    }
+                }
             }]
         }]
     }

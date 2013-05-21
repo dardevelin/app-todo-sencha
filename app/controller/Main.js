@@ -14,11 +14,15 @@ Ext.define('Todo.controller.Main', {
             'Main'
         ],
         refs   : {
-            tabs    : 'main'
+            tabs    : 'main',
+            dataview: 'dataview'
         },
         control: {
             'login' : {
                 submit : 'doLogin'
+            },
+            'tasks' : {
+                addtask : 'addTask'
             }
         }
     },
@@ -50,6 +54,30 @@ Ext.define('Todo.controller.Main', {
 
         tabs.remove(login,true);
         tabs.getTabBar().show();
+        Todo.Ajax.request({
+            url     : 'db/todo',
+            scope   : this,
+            success : this.showTasks
+        });
+    },
+
+    addTask          : function(data){
+        Todo.Ajax.request({
+            url    : 'db/todo',
+            method : 'POST',
+            params : data,
+            scope  : this,
+            success: function(response){
+                if(response.success){
+                    data.id = response[0].id;
+                    this.getDataview().getStore().add(data);
+                }
+            }
+        });
+    },
+
+    showTasks        : function(data){
+        this.getDataview().getStore().setData(data);
     },
 
     showErrorMessage : function(data){
