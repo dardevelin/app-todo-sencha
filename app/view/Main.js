@@ -3,9 +3,9 @@ Ext.define('Todo.view.Main', {
     xtype : 'main',
     requires: [
         'Ext.TitleBar',
-        'Ext.Video',
         'Todo.view.Tasks',
-        'Todo.view.Login'
+        'Todo.view.Login',
+        'Todo.view.About'
     ],
     config: {
         tabBarPosition: 'bottom',

@@ -61,7 +61,8 @@ Ext.define('Todo.controller.Main', {
     },
 
     skipLogin : function(user){
-        console.log(user);
+        this.showLogin();
+        this.loadTasks(user);
     },
 
     showLogin : function(){

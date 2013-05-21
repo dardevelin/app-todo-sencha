@@ -10,6 +10,9 @@ Ext.define('Todo.view.About', {
     alias : 'widget.about',
 
     config: {
-        html : '<h1>About</h1><p>This application has been develop by an awesome ModusCreate.</p>'
+        title: 'About',
+        iconCls: 'more',
+        padding : 10,
+        html : '<h1>About</h1><p>This application has been develop by ModusCreate using the Dream Factory API.</p>'
     }
 });

@@ -17,7 +17,7 @@ Ext.define('Todo.view.Tasks', {
             type : 'vbox'
         },
         title: 'Tasks',
-        iconCls: 'home',
+        iconCls: 'bookmarks',
 
         items: [{
             docked: 'top',
