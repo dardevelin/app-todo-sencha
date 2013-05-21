@@ -32,7 +32,11 @@ Ext.define('Todo.view.Login', {
             xtype : 'button',
             text  : 'Submit',
             ui    : 'action',
-            margin: 10
+            margin: 10,
+            handler : function(button){
+                var form = button.up('login');
+                form.fireEvent('submit',form,form.getValues());
+            }
         }]
     }
 });

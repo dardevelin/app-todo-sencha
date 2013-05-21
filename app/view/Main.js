@@ -14,7 +14,8 @@ Ext.define('Todo.view.Main', {
         },
 
         items: [{
-            xtype : 'login'
+            xtype : 'login',
+            scrollable : null
         },{
             xtype : 'tasks'
         }]

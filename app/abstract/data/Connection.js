@@ -28,11 +28,20 @@ Ext.define('Todo.abstract.data.Connection', {
             'X-Application-Name' : 'sencha-todo'
         };
 
+        if(config.container && config.container.mask){
+            config.container.mask({xtype: 'loadmask',message:'Please wait...'});
+        }
+
         this.callParent([config]);
     },
 
     handleSuccess : function(response,config){
         var data;
+
+        if(config.container && config.container.mask){
+            config.container.unmask();
+        }
+
         try{
             data = Ext.decode(response.responseText);
             data.success = true;
@@ -48,6 +57,9 @@ Ext.define('Todo.abstract.data.Connection', {
 
     handleFailure : function(response,config){
         var data;
+        if(config.container && config.container.mask){
+            config.container.unmask();
+        }
         try{
             data = Ext.decode(response.responseText);
             data.success = false;

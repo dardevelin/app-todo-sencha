@@ -15,7 +15,7 @@ Ext.define('Todo.controller.Main', {
         ],
         control: {
             'login' : {
-                submit : 'login'
+                submit : 'doLogin'
             }
         }
     },
@@ -29,15 +29,28 @@ Ext.define('Todo.controller.Main', {
         });
     },
 
-    login     : function(values){
+    doLogin     : function(form,values){
         Todo.Ajax.request({
             url     : 'user/session',
             method  : 'POST',
             params  : values,
             scope   : this,
             success : this.loadTasks,
-            failure : this.showErrorMessage
+            failure : this.showErrorMessage,
+            container : form
         });
+    },
+
+    loadTasks        : function(){
+
+    },
+
+    showErrorMessage : function(data){
+        var msg = '';
+        for(var i=0,len=data.error.length;i<len;i++){
+            msg += '* '+data.error[i].message+'</br>';
+        }
+        Ext.Msg.alert('Error',msg);
     },
 
     skipLogin : function(user){
