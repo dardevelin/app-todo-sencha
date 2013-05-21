@@ -24,10 +24,11 @@ Ext.application({
     name: 'Todo',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'Todo.abstract.data.Connection'
     ],
 
-    views: [
+    controllers: [
         'Main'
     ],
 
@@ -47,14 +48,6 @@ Ext.application({
         '748x1024': 'resources/startup/748x1024.png',
         '1536x2008': 'resources/startup/1536x2008.png',
         '1496x2048': 'resources/startup/1496x2048.png'
-    },
-
-    launch: function() {
-        // Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
-
-        // Initialize the main view
-        Ext.Viewport.add(Ext.create('Todo.view.Main'));
     },
 
     onUpdated: function() {
