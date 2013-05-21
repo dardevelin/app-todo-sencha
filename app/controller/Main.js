@@ -22,7 +22,9 @@ Ext.define('Todo.controller.Main', {
                 submit : 'doLogin'
             },
             'tasks' : {
-                addtask : 'addTask'
+                addtask     : 'addTask',
+                removetask  : 'removeTask',
+                completetask: 'updateTask'
             }
         }
     },
@@ -57,6 +59,7 @@ Ext.define('Todo.controller.Main', {
         Todo.Ajax.request({
             url     : 'db/todo',
             scope   : this,
+            container : this.getDataview(),
             success : this.showTasks
         });
     },
@@ -67,11 +70,38 @@ Ext.define('Todo.controller.Main', {
             method : 'POST',
             params : data,
             scope  : this,
+            container : this.getDataview(),
             success: function(response){
                 if(response.success){
                     data.id = response[0].id;
                     this.getDataview().getStore().add(data);
                 }
+            }
+        });
+    },
+
+    removeTask         : function(task){
+        Todo.Ajax.request({
+            url     : 'db/todo',
+            method  : 'DELETE',
+            params  : {id:task.getId()},
+            container : this.getDataview(),
+            scope   : this,
+            success : function(response){
+                this.getDataview().getStore().remove(task);
+            }
+        });
+    },
+
+    updateTask       : function(task){
+        Todo.Ajax.request({
+            url     : 'db/todo',
+            method  : 'PUT',
+            params  : {id:task.getId(),complete:!task.get('complete')},
+            container : this.getDataview(),
+            scope   : this,
+            success : function(response){
+                task.set('complete',!task.get('complete'));
             }
         });
     },

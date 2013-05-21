@@ -30,7 +30,17 @@ Ext.define('Todo.view.Tasks', {
             cls     : 'tasks-view',
             padding : '20 0',
             store   : {type:'tasks'},
-            itemTpl : '<div class="item-remove"></div> {name}'
+            itemTpl : '<div class="item-remove"></div> <p <tpl if="complete == true">class="item-completed"</tpl>>{name}</p>',
+            listeners : {
+                itemtap : function(dataview,index,target,record,event){
+                    var view = this.up('tasks');
+                    if(event.getTarget('.item-remove')){
+                        view.fireEvent('removetask',record);
+                    }else{
+                        view.fireEvent('completetask',record);
+                    }
+                }
+            }
         },{
             xtype   : 'container',
             layout  : 'hbox',

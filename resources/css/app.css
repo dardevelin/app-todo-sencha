@@ -6123,8 +6123,14 @@ body.x-desktop {
   content: "-";
 }
 .tasks-view .x-dataview-item .item-remove:before {
+  width: 30px;
+  height: 30px;
   text-align: left;
   font-size: 28px;
   left: 10px;
   top: 5px;
+}
+.tasks-view .x-dataview-item .item-completed {
+  text-decoration: line-through;
+  font-weight: bold;
 }
