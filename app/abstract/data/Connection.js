@@ -25,7 +25,7 @@ Ext.define('Todo.abstract.data.Connection', {
         config.success = this.handleSuccess;
         config.failure = this.handleFailure;
         config.headers = {
-            'X-Application-Name' : 'sencha-todo'
+            'X-DreamFactory-Application-Name' : 'sencha-todo'
         };
 
         if(config.container && config.container.mask){
