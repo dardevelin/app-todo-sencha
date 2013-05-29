@@ -64349,7 +64349,7 @@ Ext.define('Todo.abstract.data.Connection', {
         config.success = this.handleSuccess;
         config.failure = this.handleFailure;
         config.headers = {
-            'X-DreamFactory-Application-Name' : 'sencha-todo'
+            'X-DreamFactory-Application-Name' : 'todosencha'
         };
 
         if(config.container && config.container.mask){
