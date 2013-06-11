@@ -101,7 +101,8 @@
     "resources": [
         "resources/images",
         "resources/icons",
-        "resources/startup"
+        "resources/startup",
+	"desktop.html"
     ],
 
     /**

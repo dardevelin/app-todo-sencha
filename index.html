@@ -51,6 +51,14 @@
     </style>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var isMobile = navigator.userAgent.toLowerCase().match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
+            if (!isMobile) {
+                window.location = 'desktop.html';
+            }
+        }());
+    </script>
 </head>
 <body>
     <div id="appLoadingIndicator">
